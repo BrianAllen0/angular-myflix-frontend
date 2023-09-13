@@ -57,7 +57,7 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-  public deleteUser(user: string): Observable<any> {
+  public deleteUser(user: any): Observable<any> {
     return this.http
       .delete(apiUrl + '/user/unregister', user)
       .pipe(catchError(this.handleError));
@@ -83,7 +83,7 @@ export class FetchApiDataService {
 
   public updateUser(newData: any): Observable<any> {
     return this.http
-      .patch(apiUrl + '/user/update' + newData)
+      .patch(apiUrl + '/user/update', newData)
       .pipe(catchError(this.handleError));
   }
 
