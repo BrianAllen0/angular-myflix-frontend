@@ -1,0 +1,10 @@
+.movie-card {
+  width: auto;
+  height: auto;
+  margin: 1rem;
+}
+
+.movie-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
