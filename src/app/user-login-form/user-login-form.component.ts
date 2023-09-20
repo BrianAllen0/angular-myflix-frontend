@@ -27,13 +27,13 @@ export class UserLoginFormComponent {
         localStorage.setItem('user', result.user.Username);
         localStorage.setItem('token', result.token);
         this.dialogRef.close();
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open('Logged in!', 'OK', {
           duration: 2000,
         });
         this.router.navigate(['movies']);
       },
       (result) => {
-        this.snackBar.open(result, 'OK', {
+        this.snackBar.open('Invalid Credentials!', 'OK', {
           duration: 2000,
         });
       }
