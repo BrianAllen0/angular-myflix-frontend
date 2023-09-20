@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { UserLoginFormComponent } from './user-login-form.component';
 
@@ -8,7 +9,7 @@ describe('UserLoginFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UserLoginFormComponent]
+      declarations: [UserLoginFormComponent],
     });
     fixture = TestBed.createComponent(UserLoginFormComponent);
     component = fixture.componentInstance;
