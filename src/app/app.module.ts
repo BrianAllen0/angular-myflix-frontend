@@ -20,6 +20,7 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserChangeInfoFormComponent } from './user-change-info-form/user-change-info-form.component';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileComponent,
     UserChangeInfoFormComponent,
+    InfoModalComponent,
   ],
   imports: [
     BrowserModule,
