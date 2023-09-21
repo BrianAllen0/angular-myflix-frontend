@@ -1,4 +1,9 @@
 <div class="movie-cards-container">
+  <div>
+    <button mat-raised-button color="primary" (click)="goToProfile()">
+      Profile
+    </button>
+  </div>
   <div class="movie-cards-grid">
     <mat-card *ngFor="let movie of movies" class="movie-card">
       <mat-card-header>
