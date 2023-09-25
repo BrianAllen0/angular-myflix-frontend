@@ -39,4 +39,7 @@ export class UserLoginFormComponent {
       }
     );
   }
+  closeLogin(): void {
+    this.dialogRef.close();
+  }
 }

@@ -9,14 +9,10 @@ import { UserChangeInfoFormComponent } from '../user-change-info-form/user-chang
 })
 export class UserProfileComponent {
   constructor(public dialog: MatDialog) {}
-  private infoDialog: any;
 
   openChangeUserInfoDialog(): void {
-    this.infoDialog = this.dialog.open(UserChangeInfoFormComponent, {
+    this.dialog.open(UserChangeInfoFormComponent, {
       width: '280px',
     });
-  }
-  closeChangeUserInfoDialog(): void {
-    this.infoDialog.close();
   }
 }
