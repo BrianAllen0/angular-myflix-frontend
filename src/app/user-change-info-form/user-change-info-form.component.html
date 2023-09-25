@@ -6,22 +6,22 @@
   </mat-card-header>
   <mat-card-content>
     <form>
-      <mat-form-field>
+      <mat-form-field style="width: 100%">
         <input
           matInput
           [(ngModel)]="updatedInfo.Email"
-          placeholder="Email"
+          placeholder="New Email"
           type="text"
           name="Email"
           required
         />
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field style="width: 100%">
         <input
           matInput
           [(ngModel)]="updatedInfo.Password"
           type="password"
-          placeholder="Password"
+          placeholder="New Password"
           name="Password"
           required
         />
@@ -29,8 +29,23 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="changeInfo()">
-      Login
-    </button>
+    <div class="info-buttons-container">
+      <button
+        class="info-button"
+        mat-raised-button
+        color="primary"
+        (click)="changeInfo()"
+      >
+        Update
+      </button>
+      <button
+        class="info-button"
+        mat-raised-button
+        color="primary"
+        (click)="closeChangeInfoDialog()"
+      >
+        Cancel
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>

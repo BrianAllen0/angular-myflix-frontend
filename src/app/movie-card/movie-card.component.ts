@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,8 @@ export class MovieCardComponent {
   movies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
-    public router: Router
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

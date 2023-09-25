@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class UserChangeInfoFormComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public dialogRef: MatDialogRef<UserChangeInfoFormComponent>,
     public snackBar: MatSnackBar
   ) {}
 
@@ -28,5 +30,8 @@ export class UserChangeInfoFormComponent {
         });
       }
     );
+  }
+  closeChangeInfoDialog(): void {
+    this.dialogRef.close();
   }
 }

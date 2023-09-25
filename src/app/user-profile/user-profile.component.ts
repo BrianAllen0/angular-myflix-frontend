@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
 
 @Component({
@@ -8,5 +8,15 @@ import { UserChangeInfoFormComponent } from '../user-change-info-form/user-chang
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent {
-  constructor(public dialogRef: MatDialogRef<UserChangeInfoFormComponent>) {}
+  constructor(public dialog: MatDialog) {}
+  private infoDialog: any;
+
+  openChangeUserInfoDialog(): void {
+    this.infoDialog = this.dialog.open(UserChangeInfoFormComponent, {
+      width: '280px',
+    });
+  }
+  closeChangeUserInfoDialog(): void {
+    this.infoDialog.close();
+  }
 }

@@ -1,0 +1,10 @@
+.info-buttons-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+
+.info-button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
