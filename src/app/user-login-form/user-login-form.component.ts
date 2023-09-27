@@ -25,6 +25,7 @@ export class UserLoginFormComponent {
     this.fetchApiData.login(this.userData).subscribe(
       (result) => {
         localStorage.setItem('user', result.user.Username);
+        localStorage.setItem('userObject', JSON.stringify(result.user));
         localStorage.setItem('token', result.token);
         this.dialogRef.close();
         this.snackBar.open('Logged in!', 'OK', {

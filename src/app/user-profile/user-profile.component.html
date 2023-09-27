@@ -1,2 +1,13 @@
-<p>user-profile works!</p>
-<button (click)="openChangeUserInfoDialog()">TEST</button>
+<div class="profile-container">
+  <div class="banner">
+    <h1 class="header">My Profile</h1>
+  </div>
+  <div class="profile-info">
+    <h2>Username:</h2>
+    <h3>{{ userRef.Username }}</h3>
+    <h2>Email:</h2>
+    <h3>{{ userRef.Email }}</h3>
+    <h2>Date of Birth:</h2>
+    <h3>{{ userBirthday }}</h3>
+  </div>
+</div>

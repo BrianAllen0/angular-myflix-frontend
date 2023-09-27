@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
 
 @Component({
@@ -8,8 +9,26 @@ import { UserChangeInfoFormComponent } from '../user-change-info-form/user-chang
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog
+  ) {}
+  public userRef: any;
+  private birthdayDate: Date = new Date();
+  public userBirthday: string = '';
 
+  ngOnInit(): void {
+    this.userRef = localStorage.getItem('userObject');
+    console.log(this.userRef);
+    this.userRef = JSON.parse(this.userRef);
+    this.birthdayDate = new Date(this.userRef.Birthday);
+    this.userBirthday =
+      this.birthdayDate.getMonth() +
+      '/' +
+      this.birthdayDate.getDate() +
+      '/' +
+      this.birthdayDate.getFullYear();
+  }
   openChangeUserInfoDialog(): void {
     this.dialog.open(UserChangeInfoFormComponent, {
       width: '280px',
