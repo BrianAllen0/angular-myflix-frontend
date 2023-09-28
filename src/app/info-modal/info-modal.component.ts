@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./info-modal.component.scss'],
 })
 export class InfoModalComponent {
-  private infoTitle: String = '';
-  private infoData: String = '';
+  public infoTitle: String = '';
+  public infoContent: String = '';
 }

@@ -36,21 +36,21 @@
       <mat-card-actions>
         <button
           mat-button
-          (click)="showInfoModal(movie.Director.Name, movie.Director.Bio)"
+          (click)="showInfoModal(movie.Genre.Name, movie.Genre.Description)"
           color="white"
         >
           Genre
         </button>
         <button
           mat-button
-          (click)="showInfoModal(movie.Genre.Name, movie.Genre.Description)"
+          (click)="showInfoModal(movie.Director.Name, movie.Director.Bio)"
           color="white"
         >
           Director
         </button>
         <button
           mat-button
-          (click)="showInfoModal(synopsisLiteral, movie.Description)"
+          (click)="showInfoModal(movie.Title, movie.Description)"
           color="white"
         >
           Synopsis
