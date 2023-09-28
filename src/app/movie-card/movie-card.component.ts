@@ -27,6 +27,11 @@ export class MovieCardComponent {
     });
   }
 
+  logout(): void {
+    // TODO: proper logout logic
+    this.router.navigate(['welcome']);
+  }
+
   goToProfile(): void {
     this.router.navigate(['profile']);
   }

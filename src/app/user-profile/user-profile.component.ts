@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
 
@@ -11,7 +12,8 @@ import { UserChangeInfoFormComponent } from '../user-change-info-form/user-chang
 export class UserProfileComponent {
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {}
   public userRef: any;
   private birthdayDate: Date = new Date();
@@ -29,6 +31,15 @@ export class UserProfileComponent {
       '/' +
       this.birthdayDate.getFullYear();
   }
+
+  goToMovies(): void {
+    this.router.navigate(['movies']);
+  }
+
+  logout(): void {
+    this.router.navigate(['welcome']);
+  }
+
   openChangeUserInfoDialog(): void {
     this.dialog.open(UserChangeInfoFormComponent, {
       width: '280px',
