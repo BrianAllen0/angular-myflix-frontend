@@ -18,12 +18,22 @@
       Logout
     </button>
   </div>
-  <div class="profile-info">
-    <h2>Username:</h2>
-    <h3>{{ userRef.Username }}</h3>
-    <h2>Email:</h2>
-    <h3>{{ userRef.Email }}</h3>
-    <h2>Date of Birth:</h2>
-    <h3>{{ userBirthday }}</h3>
+  <div class="profile-info-container">
+    <div>
+      <h2>Username:</h2>
+      <h3>{{ userRef.Username }}</h3>
+      <h2>Email:</h2>
+      <h3>{{ userRef.Email }}</h3>
+      <h2>Date of Birth:</h2>
+      <h3>{{ userBirthday }}</h3>
+    </div>
+    <button
+      class="change-info-button"
+      mat-raised-button
+      color="primary"
+      (click)="openChangeUserInfoDialog()"
+    >
+      Update User Info
+    </button>
   </div>
 </div>
