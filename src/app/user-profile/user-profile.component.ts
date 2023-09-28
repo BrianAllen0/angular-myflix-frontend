@@ -37,6 +37,7 @@ export class UserProfileComponent {
   }
 
   logout(): void {
+    // TODO: proper logout logic
     this.router.navigate(['welcome']);
   }
 

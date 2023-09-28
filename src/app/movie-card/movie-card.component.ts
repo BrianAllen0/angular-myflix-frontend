@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent {
   movies: any[] = [];
+  public synopsisLiteral: string = 'Synopsis';
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -26,6 +27,8 @@ export class MovieCardComponent {
       return this.movies;
     });
   }
+
+  showInfoModal(title: string, content: string): void {}
 
   logout(): void {
     // TODO: proper logout logic
