@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
 
@@ -18,6 +19,7 @@ export class UserProfileComponent {
   public userRef: any;
   private birthdayDate: Date = new Date();
   public userBirthday: string = '';
+  favoriteMovies: any[] = [];
 
   ngOnInit(): void {
     this.userRef = localStorage.getItem('userObject');
@@ -30,6 +32,23 @@ export class UserProfileComponent {
       this.birthdayDate.getDate() +
       '/' +
       this.birthdayDate.getFullYear();
+  }
+
+  getFavoriteMovies(): void {
+    this.fetchApiData
+      .getUserFavorites(this.userRef.Username)
+      .subscribe((resp: any) => {
+        this.favoriteMovies = resp;
+        return this.favoriteMovies;
+      });
+  }
+
+  showInfoModal(title: string, content: string): void {
+    let dialogRef = this.dialog.open(InfoModalComponent, {
+      width: '50%',
+    });
+    dialogRef.componentInstance.infoContent = content;
+    dialogRef.componentInstance.infoTitle = title;
   }
 
   goToMovies(): void {
