@@ -23,8 +23,8 @@ export class UserProfileComponent {
 
   ngOnInit(): void {
     this.userRef = localStorage.getItem('userObject');
-    console.log(this.userRef);
     this.userRef = JSON.parse(this.userRef);
+    this.favoriteMovies = this.userRef.FavoriteMovies;
     this.birthdayDate = new Date(this.userRef.Birthday);
     this.userBirthday =
       this.birthdayDate.getMonth() +
@@ -41,6 +41,24 @@ export class UserProfileComponent {
         this.favoriteMovies = resp;
         return this.favoriteMovies;
       });
+  }
+
+  addFavorite(movie: string): void {
+    this.fetchApiData
+      .addFavoriteMovie(this.userRef.Username, movie)
+      .subscribe((resp: any) => {
+        return resp;
+      });
+  }
+
+  removeFavorite(movie: string): void {
+    let data = {
+      Username: this.userRef.Username,
+      Title: movie,
+    };
+    this.fetchApiData.deleteFavoriteMovie(data).subscribe((resp: any) => {
+      return resp;
+    });
   }
 
   showInfoModal(title: string, content: string): void {
