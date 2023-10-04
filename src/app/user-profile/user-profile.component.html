@@ -83,12 +83,12 @@
           <div class="favorite-icon-container">
             <div *ngIf="favoriteMovies.includes(movie._id)">
               <button (click)="addFavorite(movie.Title)">
-                <mat-icon>favorite_border</mat-icon>
+                <mat-icon>favorite</mat-icon>
               </button>
             </div>
             <div *ngIf="!favoriteMovies.includes(movie._id)">
               <button (click)="removeFavorite(movie.Title)">
-                <mat-icon>favorite</mat-icon>
+                <mat-icon>favorite_border</mat-icon>
               </button>
             </div>
           </div>

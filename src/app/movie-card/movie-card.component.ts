@@ -66,7 +66,7 @@ export class MovieCardComponent {
   }
 
   logout(): void {
-    // TODO: proper logout logic
+    localStorage.clear();
     this.router.navigate(['welcome']);
   }
 
