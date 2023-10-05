@@ -41,49 +41,49 @@ export class FetchApiDataService {
 
   public getGenre(genre: string): Observable<any> {
     return this.http
-      .get(apiUrl + '/genres/' + genre)
+      .get(apiUrl + 'genres/' + genre)
       .pipe(catchError(this.handleError));
   }
 
   public getDirector(director: string): Observable<any> {
     return this.http
-      .get(apiUrl + '/directors/' + director)
+      .get(apiUrl + 'directors/' + director)
       .pipe(catchError(this.handleError));
   }
 
   public getUser(user: string): Observable<any> {
     return this.http
-      .get(apiUrl + '/user/' + user)
+      .get(apiUrl + 'user/' + user)
       .pipe(catchError(this.handleError));
   }
 
   public deleteUser(user: any): Observable<any> {
     return this.http
-      .delete(apiUrl + '/user/unregister', user)
+      .delete(apiUrl + 'user/unregister', user)
       .pipe(catchError(this.handleError));
   }
 
   public getUserFavorites(user: string): Observable<any> {
     return this.http
-      .get(apiUrl + '/user/' + user)
+      .get(apiUrl + 'user/' + user)
       .pipe(catchError(this.handleError));
   }
 
   public addFavoriteMovie(user: string, movie: string): Observable<any> {
     return this.http
-      .post(apiUrl + '/movies/favorites/add/' + movie, user)
+      .post(apiUrl + 'movies/favorites/add/' + movie, user)
       .pipe(catchError(this.handleError));
   }
 
   public deleteFavoriteMovie(userAndMovie: any): Observable<any> {
     return this.http
-      .delete(apiUrl + '/movies/favorites/remove', userAndMovie)
+      .delete(apiUrl + 'movies/favorites/remove', userAndMovie)
       .pipe(catchError(this.handleError));
   }
 
   public updateUser(newData: any): Observable<any> {
     return this.http
-      .patch(apiUrl + '/user/update', newData)
+      .patch(apiUrl + 'user/update', newData)
       .pipe(catchError(this.handleError));
   }
 
