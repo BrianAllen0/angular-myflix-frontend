@@ -34,6 +34,15 @@
   margin-left: auto;
 }
 
+.icon-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
 .logout-button {
   margin-right: 1rem;
   margin-left: 0.25rem;
