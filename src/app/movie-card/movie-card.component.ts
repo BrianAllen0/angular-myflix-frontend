@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class MovieCardComponent {
   movies: any[] = [];
   favoriteMovies: any[] = [];
-  favoriteMovieTitles: string[] = [];
   public userRef: any;
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -21,15 +20,16 @@ export class MovieCardComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getMovies();
+    if (localStorage.getItem('movies') === null) {
+      this.getMovies();
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+    } else {
+      this.movies = JSON.parse(localStorage.getItem('movies') || '{}');
+    }
+
     this.userRef = localStorage.getItem('userObject');
     this.userRef = JSON.parse(this.userRef);
     this.favoriteMovies = this.userRef.FavoriteMovies;
-    console.log(this.userRef.FavoriteMovies);
-    this.favoriteMovies.forEach((movie) => {
-      this.favoriteMovieTitles.push(movie.title);
-    });
-    console.log(this.favoriteMovieTitles);
   }
 
   getMovies(): void {
@@ -48,6 +48,7 @@ export class MovieCardComponent {
   }
 
   removeFavorite(movie: string): void {
+    console.log(movie);
     let data = {
       Username: this.userRef.Username,
       Title: movie,
