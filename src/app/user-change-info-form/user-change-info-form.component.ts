@@ -26,8 +26,6 @@ export class UserChangeInfoFormComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
-    console.log(formatDate(this.data.Birthday, 'MM/dd/yyyy', 'en-US', '+0000'));
     this.updatedInfo = {
       ...this.updatedInfo,
       Username: this.data.Username,
