@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UserRegRequest } from '../types';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-change-info-form',
@@ -9,7 +11,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./user-change-info-form.component.scss'],
 })
 export class UserChangeInfoFormComponent {
-  @Input() updatedInfo = {
+  @Input() updatedInfo: UserRegRequest = {
     Password: '',
     Email: '',
     Username: '',
@@ -19,18 +21,36 @@ export class UserChangeInfoFormComponent {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserChangeInfoFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: UserRegRequest //Needed to receive data from line 87 in UserProfileComponent
   ) {}
 
+  ngOnInit(): void {
+    console.log(this.data);
+    console.log(formatDate(this.data.Birthday, 'MM/dd/yyyy', 'en-US', '+0000'));
+    this.updatedInfo = {
+      ...this.updatedInfo,
+      Username: this.data.Username,
+      Email: this.data.Email,
+      //'yyyy-MM-dd' must be in this format to pre-fill input field
+      Birthday: formatDate(this.data.Birthday, 'yyyy-MM-dd', 'en-US', '+0000'),
+    };
+  }
   changeInfo(): void {
-    // const userUpdateInfo ={
-    //   ...this.updatedInfo,
-    // }
-    this.fetchApiData.updateUser(this.updatedInfo).subscribe({
+    const userUpdateInfo = {
+      Username: this.updatedInfo.Username || this.data.Username,
+      Password: this.updatedInfo.Password || '', // We are setting this to an empty string because the backend will only change password if its length is greater than 1
+      Birthday: Date.parse(this.updatedInfo.Birthday) || this.data.Birthday,
+      Email: this.updatedInfo.Email || this.data.Email,
+    };
+
+    this.fetchApiData.updateUser(userUpdateInfo).subscribe({
       next: (result) => {
+        console.log(result);
         this.snackBar.open('Updated info successfully!', 'OK', {
           duration: 2000,
         });
+        this.closeChangeInfoDialog();
       },
       error: (result) => {
         this.snackBar.open('Failed to update info!', 'OK', {

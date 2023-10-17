@@ -34,24 +34,22 @@ export class UserRegistrationFormComponent implements OnInit {
       ...this.userData,
       Birthday: Date.parse(this.userData.Birthday).toString(),
     };
-    console.log(this.userData.Birthday);
-    console.log(userDataUpdate);
-    // this.fetchApiData.register(userDataUpdate).subscribe({
-    //   next: (result) => {
-    //     this.dialogRef.close();
-    //     this.snackBar.open('Registered successfully!', 'OK', {
-    //       duration: 2000,
-    //     });
-    //     this.dialog.open(UserLoginFormComponent, {
-    //       width: '280px',
-    //     });
-    //   },
-    //   error: (result) => {
-    //     this.snackBar.open('Registration failed!', 'OK', {
-    //       duration: 2000,
-    //     });
-    //   },
-    // });
+    this.fetchApiData.register(userDataUpdate).subscribe({
+      next: (result) => {
+        this.dialogRef.close();
+        this.snackBar.open('Registered successfully!', 'OK', {
+          duration: 2000,
+        });
+        this.dialog.open(UserLoginFormComponent, {
+          width: '280px',
+        });
+      },
+      error: (result) => {
+        this.snackBar.open('Registration failed!', 'OK', {
+          duration: 2000,
+        });
+      },
+    });
   }
   closeRegistration(): void {
     this.dialogRef.close();

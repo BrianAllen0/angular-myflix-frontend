@@ -84,6 +84,7 @@ export class UserProfileComponent {
   openChangeUserInfoDialog(): void {
     this.dialog.open(UserChangeInfoFormComponent, {
       width: '280px',
+      data: this.userRef, //passing data to dialog box
     });
   }
 }
