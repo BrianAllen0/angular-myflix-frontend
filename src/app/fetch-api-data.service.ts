@@ -17,7 +17,7 @@ import {
 } from './types';
 
 //Declaring the api url that will provide data for the client app
-const apiUrl = 'http://localhost:8080/'; //'https://ba-movie-api.herokuapp.com/';
+const apiUrl = 'https://ba-movie-api.herokuapp.com/';
 @Injectable({
   providedIn: 'root',
 })
@@ -29,7 +29,7 @@ export class FetchApiDataService {
   //////////// Endpoints ////////////
   public register(userDetails: UserRegRequest): Observable<any> {
     return this.http
-      .post(apiUrl + 'user/register', userDetails)
+      .post(`${apiUrl}user/register`, userDetails)
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
@@ -64,7 +64,7 @@ export class FetchApiDataService {
   public getGenre(genre: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'genres/' + genre, {
+      .get(`${apiUrl}genres/${genre}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -134,7 +134,7 @@ export class FetchApiDataService {
   public updateUser(newData: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .patch(apiUrl + 'user/update', newData, {
+      .patch(`${apiUrl}user/update`, newData, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
