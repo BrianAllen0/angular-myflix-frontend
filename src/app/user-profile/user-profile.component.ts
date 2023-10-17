@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
+import { Movie, User } from '../types';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,48 +18,49 @@ export class UserProfileComponent {
     public dialog: MatDialog,
     public router: Router
   ) {}
-  public userRef: any;
-  private birthdayDate: Date = new Date();
+
   public userBirthday: string = '';
-  favoriteMovies: any[] = [];
+  favoriteMovies: Movie[] = [];
+  userRef: User = {
+    _id: '',
+    Username: '',
+    Password: '',
+    Birthday: '',
+    FavoriteMovies: [],
+    Email: '',
+  };
 
   ngOnInit(): void {
-    this.userRef = localStorage.getItem('userObject');
-    this.userRef = JSON.parse(this.userRef);
-    this.favoriteMovies = this.userRef.FavoriteMovies;
-    this.birthdayDate = new Date(this.userRef.Birthday);
-    this.userBirthday =
-      this.birthdayDate.getMonth() +
-      '/' +
-      this.birthdayDate.getDate() +
-      '/' +
-      this.birthdayDate.getFullYear();
+    /**
+     * You shouldnt use the user in the localstorage.
+     * Just ask your server for the user data
+     */
+    this.getUserData();
   }
 
-  getFavoriteMovies(): void {
+  getUserData() {
     this.fetchApiData
-      .getUserFavorites(this.userRef.Username)
-      .subscribe((resp: any) => {
-        this.favoriteMovies = resp;
-        return this.favoriteMovies;
+      .getUser('doesnt matter what you put here')
+      .subscribe((res) => {
+        this.userRef = {
+          ...res,
+          Birthday: formatDate(res.Birthday, 'MM-dd-yyyy', 'en-US', '+0000'), //ensure the timezone is UTC
+        };
+        this.favoriteMovies = res.FavoriteMovies;
       });
   }
 
-  addFavorite(movie: string): void {
-    this.fetchApiData
-      .addFavoriteMovie(this.userRef.Username, movie)
-      .subscribe((resp: any) => {
-        return resp;
-      });
+  addFavorite(movieId: string): void {
+    this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
+      this.getUserData();
+      this.showInfoModal('success', resp.message);
+    });
   }
 
-  removeFavorite(movie: string): void {
-    let data = {
-      Username: this.userRef.Username,
-      Title: movie,
-    };
-    this.fetchApiData.deleteFavoriteMovie(data).subscribe((resp: any) => {
-      return resp;
+  removeFavorite(movieId: string): void {
+    this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp) => {
+      this.getUserData();
+      this.showInfoModal('success', resp.message);
     });
   }
 

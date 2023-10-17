@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Movie, User } from '../types';
 
 @Component({
   selector: 'app-movie-card',
@@ -10,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent {
-  movies: any[] = [];
-  favoriteMovies: any[] = [];
-  public userRef: any;
+  movies: Movie[] = [];
+  favoriteMovies: Movie[] = [];
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -20,40 +21,56 @@ export class MovieCardComponent {
   ) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('movies') === null) {
-      this.getMovies();
-      localStorage.setItem('movies', JSON.stringify(this.movies));
-    } else {
-      this.movies = JSON.parse(localStorage.getItem('movies') || '{}');
+    // const moviesInLocalStorage = localStorage.getItem('movies');
+    // if (moviesInLocalStorage === null || moviesInLocalStorage === '[]') {
+
+    const user = localStorage.getItem('userObject');
+
+    if (!user) {
+      this.router.navigate(['welcome']);
+      return;
     }
 
-    this.userRef = localStorage.getItem('userObject');
-    this.userRef = JSON.parse(this.userRef);
-    this.favoriteMovies = this.userRef.FavoriteMovies;
+    this.getMovies();
+    this.getUserMovieFavorites();
+    //   localStorage.setItem('movies', JSON.stringify(this.movies));
+    // } else {
+    //   this.movies = JSON.parse(localStorage.getItem('movies') || '[]');
+    // }
+
+    // this.userRef = localStorage.getItem('userObject');
+    // this.userRef = JSON.parse(this.userRef);
+    // this.favoriteMovies = this.userRef.FavoriteMovies;
   }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      return this.movies;
     });
   }
 
-  addFavorite(movie: string): void {
-    this.fetchApiData
-      .addFavoriteMovie(this.userRef.Username, movie)
-      .subscribe((resp: any) => {
-        return resp;
-      });
+  getUserMovieFavorites() {
+    this.fetchApiData.getUser('doesntmatter').subscribe((res) => {
+      this.favoriteMovies = res.FavoriteMovies;
+    });
   }
 
-  removeFavorite(movie: string): void {
-    console.log(movie);
-    let data = {
-      Username: this.userRef.Username,
-      Title: movie,
-    };
-    this.fetchApiData.deleteFavoriteMovie(data).subscribe((resp: any) => {
+  isFavorite(movieID: string): boolean {
+    return !!this.favoriteMovies.find((movie) => movie._id === movieID);
+  }
+
+  addFavorite(movieId: string): void {
+    this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp) => {
+      console.log(resp);
+      this.getUserMovieFavorites();
+      return resp;
+    });
+  }
+
+  removeFavorite(movieId: string): void {
+    console.log(movieId);
+    this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
+      this.getUserMovieFavorites();
       return resp;
     });
   }

@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserRegRequest } from '../types';
+import { Router } from '@angular/router';
+import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 
 @Component({
   selector: 'app-user-registration-form',
@@ -9,30 +12,46 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData: UserRegRequest = {
+    Username: '',
+    Password: '',
+    Email: '',
+    Birthday: '',
+  };
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
 
   registerUser(): void {
-    this.fetchApiData.register(this.userData).subscribe(
-      (result) => {
-        this.dialogRef.close();
-        this.snackBar.open('Registered successfully!', 'OK', {
-          duration: 2000,
-        });
-      },
-      (result) => {
-        this.snackBar.open('Registration failed!', 'OK', {
-          duration: 2000,
-        });
-      }
-    );
+    const userDataUpdate = {
+      ...this.userData,
+      Birthday: Date.parse(this.userData.Birthday).toString(),
+    };
+    console.log(this.userData.Birthday);
+    console.log(userDataUpdate);
+    // this.fetchApiData.register(userDataUpdate).subscribe({
+    //   next: (result) => {
+    //     this.dialogRef.close();
+    //     this.snackBar.open('Registered successfully!', 'OK', {
+    //       duration: 2000,
+    //     });
+    //     this.dialog.open(UserLoginFormComponent, {
+    //       width: '280px',
+    //     });
+    //   },
+    //   error: (result) => {
+    //     this.snackBar.open('Registration failed!', 'OK', {
+    //       duration: 2000,
+    //     });
+    //   },
+    // });
   }
   closeRegistration(): void {
     this.dialogRef.close();

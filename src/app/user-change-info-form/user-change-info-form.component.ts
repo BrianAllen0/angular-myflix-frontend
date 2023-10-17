@@ -9,7 +9,12 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./user-change-info-form.component.scss'],
 })
 export class UserChangeInfoFormComponent {
-  @Input() updatedInfo = { Password: '', Email: '' };
+  @Input() updatedInfo = {
+    Password: '',
+    Email: '',
+    Username: '',
+    Birthday: '',
+  };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -18,19 +23,23 @@ export class UserChangeInfoFormComponent {
   ) {}
 
   changeInfo(): void {
-    this.fetchApiData.updateUser(this.updatedInfo).subscribe(
-      (result) => {
+    // const userUpdateInfo ={
+    //   ...this.updatedInfo,
+    // }
+    this.fetchApiData.updateUser(this.updatedInfo).subscribe({
+      next: (result) => {
         this.snackBar.open('Updated info successfully!', 'OK', {
           duration: 2000,
         });
       },
-      (result) => {
+      error: (result) => {
         this.snackBar.open('Failed to update info!', 'OK', {
           duration: 2000,
         });
-      }
-    );
+      },
+    });
   }
+
   closeChangeInfoDialog(): void {
     this.dialogRef.close();
   }
