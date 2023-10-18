@@ -1,20 +1,10 @@
 <div class="profile-container">
   <div class="banner">
     <h1 class="header">My Profile</h1>
-    <button
-      class="movie-button"
-      mat-raised-button
-      color="primary"
-      (click)="goToMovies()"
-    >
+    <button class="movie-button" mat-raised-button color="primary" (click)="goToMovies()">
       MyFlix
     </button>
-    <button
-      class="logout-button"
-      mat-raised-button
-      color="primary"
-      (click)="logout()"
-    >
+    <button class="logout-button" mat-raised-button color="primary" (click)="logout()">
       Logout
     </button>
   </div>
@@ -25,14 +15,9 @@
       <h2>Email:</h2>
       <h3>{{ userRef.Email }}</h3>
       <h2>Date of Birth:</h2>
-      <h3>{{ userBirthday }}</h3>
+      <h3>{{ userRef.Birthday }}</h3>
     </div>
-    <button
-      class="change-info-button"
-      mat-raised-button
-      color="primary"
-      (click)="openChangeUserInfoDialog()"
-    >
+    <button class="change-info-button" mat-raised-button color="primary" (click)="openChangeUserInfoDialog()">
       Update User Info
     </button>
   </div>
@@ -42,58 +27,32 @@
       <div *ngIf="this.favoriteMovies.length === 0">
         <h1>No Favorites Yet!</h1>
       </div>
-    </div>
-    <div *ngIf="this.favoriteMovies.length !== 0" class="favorite-movies-grid">
-      <mat-card *ngFor="let movie of favoriteMovies" class="movie-card">
-        <mat-card-header>
-          <mat-card-title class="movie-card-title">{{
-            movie.Title
-          }}</mat-card-title>
-          <mat-card-subtitle class="movie-card-subtitle"
-            >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
-          >
-        </mat-card-header>
-        <img
-          class="movie-card-img"
-          src="{{ movie.ImagePath }}"
-          alt="{{ movie.Title }}"
-        />
-        <mat-card-actions>
-          <button
-            mat-button
-            (click)="showInfoModal(movie.Genre.Name, movie.Genre.Description)"
-            color="white"
-          >
-            Genre
-          </button>
-          <button
-            mat-button
-            (click)="showInfoModal(movie.Director.Name, movie.Director.Bio)"
-            color="white"
-          >
-            Director
-          </button>
-          <button
-            mat-button
-            (click)="showInfoModal(movie.Title, movie.Description)"
-            color="white"
-          >
-            Synopsis
-          </button>
-          <div class="favorite-icon-container">
-            <div *ngIf="favoriteMovies.includes(movie._id)">
+      <div *ngIf="this.favoriteMovies.length !== 0" class="favorite-movies-grid">
+        <mat-card *ngFor="let movie of favoriteMovies" class="movie-card">
+          <mat-card-header>
+            <mat-card-title class="movie-card-title">{{
+              movie.Title
+              }}</mat-card-title>
+            <mat-card-subtitle class="movie-card-subtitle">Directed by: {{ movie.Director.Name }}</mat-card-subtitle>
+          </mat-card-header>
+          <img class="movie-card-img" src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+          <mat-card-actions>
+            <button mat-button (click)="showInfoModal(movie.Genre.Name, movie.Genre.Description)" color="white">
+              Genre
+            </button>
+            <button mat-button (click)="showInfoModal(movie.Director.Name, movie.Director.Bio)" color="white">
+              Director
+            </button>
+            <button mat-button (click)="showInfoModal(movie.Title, movie.Description)" color="white">
+              Synopsis
+            </button>
+            <div class="favorite-icon-container">
               <button class="icon-button" (click)="removeFavorite(movie._id)">
                 <mat-icon>favorite</mat-icon>
               </button>
             </div>
-            <div *ngIf="!favoriteMovies.includes(movie._id)">
-              <button class="icon-button" (click)="addFavorite(movie._id)">
-                <mat-icon>favorite_border</mat-icon>
-              </button>
-            </div>
-          </div>
-        </mat-card-actions>
-      </mat-card>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
   </div>
-</div>
