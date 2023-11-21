@@ -1,0 +1,141 @@
+.banner {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  width: inherit;
+  min-width: 375px;
+  height: 3.5rem;
+  align-items: center;
+  flex-direction: row;
+  background-color: #114e7e;
+}
+
+.header {
+  margin-left: 1rem;
+  color: white;
+  user-select: none;
+}
+
+.movie-button {
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.logout-button {
+  margin-right: 1rem;
+  margin-left: 0.25rem;
+}
+
+.icon-button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(211, 211, 218);
+}
+
+.profile-separator {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-info-container {
+  margin-top: 4rem;
+  margin-left: 3rem;
+}
+
+.favorite-movies-container {
+  width: 100%;
+  display: inherit;
+  justify-content: center;
+}
+
+.favorites-title-container {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4.5rem;
+}
+
+.favorite-movies-grid {
+  display: grid;
+  max-width: 100%;
+  padding-top: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.movie-card {
+  margin: 1rem;
+  width: auto;
+  height: auto;
+  background-color: #236598;
+  color: white;
+}
+
+.movie-card-title {
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.movie-card-subtitle {
+  color: white;
+  margin-bottom: 0.3rem;
+}
+
+@media screen and (max-width: 1600px) {
+  .favorite-movies-grid {
+    display: grid;
+    max-width: 100%;
+    padding-top: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .favorite-movies-grid {
+    display: grid;
+    max-width: 100%;
+    padding-top: 1rem;
+    grid-template-columns: 1fr;
+  }
+  .movie-card {
+    margin: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    width: auto;
+    height: auto;
+    background-color: #236598;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .favorite-movies-grid {
+    display: grid;
+    max-width: 100%;
+    padding-top: 1rem;
+    grid-template-columns: 1fr;
+  }
+  .movie-card {
+    margin: 0.5rem;
+    width: auto;
+    min-width: 370px;
+    height: auto;
+    background-color: #236598;
+    color: white;
+  }
+  .movie-card-img {
+    width: 100%;
+    height: auto;
+  }
+}

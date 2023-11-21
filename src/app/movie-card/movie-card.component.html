@@ -1,0 +1,45 @@
+<div class="movie-cards-container">
+  <div class="banner">
+    <h1 class="header">MyFlix</h1>
+    <button class="profile-button" mat-raised-button color="primary" (click)="goToProfile()">
+      My Profile
+    </button>
+    <button class="logout-button" mat-raised-button color="primary" (click)="logout()">
+      Logout
+    </button>
+  </div>
+  <div class="movie-cards-grid">
+    <mat-card *ngFor="let movie of movies" class="movie-card">
+      <mat-card-header>
+        <mat-card-title class="movie-card-title">{{
+          movie.Title
+          }}</mat-card-title>
+        <mat-card-subtitle class="movie-card-subtitle">Directed by: {{ movie.Director.Name }}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="movie-card-img" src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+      <mat-card-actions>
+        <button mat-button (click)="showInfoModal(movie.Genre.Name, movie.Genre.Description)" color="white">
+          Genre
+        </button>
+        <button mat-button (click)="showInfoModal(movie.Director.Name, movie.Director.Bio)" color="white">
+          Director
+        </button>
+        <button mat-button (click)="showInfoModal(movie.Title, movie.Description)" color="white">
+          Synopsis
+        </button>
+        <div class="favorite-icon-container">
+          <div *ngIf="isFavorite(movie._id)">
+            <button class="icon-button" (click)="removeFavorite(movie._id)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </div>
+          <div class="icon-button" *ngIf="!isFavorite(movie._id)">
+            <button class="icon-button" (click)="addFavorite(movie._id)">
+              <mat-icon>favorite_border</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

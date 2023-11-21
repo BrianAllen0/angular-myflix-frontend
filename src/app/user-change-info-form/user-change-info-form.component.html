@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title style="margin-bottom: 0.4rem">Update User Info</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field style="width: 100%">
+        <input matInput [(ngModel)]="updatedInfo.Email" placeholder="New Email" type="text" name="Email" required />
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput [(ngModel)]="updatedInfo.Password" type="password" placeholder="New Password" name="Password"
+          required />
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput [(ngModel)]="updatedInfo.Username" type="text" placeholder="New Username" name="Username"
+          required />
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput [(ngModel)]="updatedInfo.Birthday" type="date" placeholder="New Birthday" name="Birthday"
+          required />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="buttons-container">
+      <button class="button" mat-raised-button color="primary" (click)="changeInfo()">
+        Update
+      </button>
+      <button class="button" mat-raised-button color="primary" (click)="closeChangeInfoDialog()">
+        Cancel
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
