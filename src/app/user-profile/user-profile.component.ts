@@ -53,14 +53,12 @@ export class UserProfileComponent {
   addFavorite(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
       this.getUserData();
-      this.showInfoModal('success', resp.message);
     });
   }
 
   removeFavorite(movieId: string): void {
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp) => {
       this.getUserData();
-      this.showInfoModal('success', resp.message);
     });
   }
 
@@ -77,7 +75,7 @@ export class UserProfileComponent {
   }
 
   logout(): void {
-    // TODO: proper logout logic
+    localStorage.clear();
     this.router.navigate(['welcome']);
   }
 
