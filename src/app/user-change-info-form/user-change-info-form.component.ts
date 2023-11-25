@@ -38,7 +38,8 @@ export class UserChangeInfoFormComponent {
     const userUpdateInfo = {
       Username: this.updatedInfo.Username || this.data.Username,
       Password: this.updatedInfo.Password || '', // We are setting this to an empty string because the backend will only change password if its length is greater than 1
-      Birthday: Date.parse(this.updatedInfo.Birthday) || this.data.Birthday,
+      Birthday:
+        Date.parse(this.updatedInfo.Birthday) || Date.parse(this.data.Birthday),
       Email: this.updatedInfo.Email || this.data.Email,
     };
 
@@ -48,6 +49,7 @@ export class UserChangeInfoFormComponent {
         this.snackBar.open('Updated info successfully!', 'OK', {
           duration: 2000,
         });
+
         this.closeChangeInfoDialog();
       },
       error: (result) => {

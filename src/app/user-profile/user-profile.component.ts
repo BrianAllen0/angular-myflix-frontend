@@ -31,23 +31,17 @@ export class UserProfileComponent {
   };
 
   ngOnInit(): void {
-    /**
-     * You shouldnt use the user in the localstorage.
-     * Just ask your server for the user data
-     */
     this.getUserData();
   }
 
   getUserData() {
-    this.fetchApiData
-      .getUser('doesnt matter what you put here')
-      .subscribe((res) => {
-        this.userRef = {
-          ...res,
-          Birthday: formatDate(res.Birthday, 'MM-dd-yyyy', 'en-US', '+0000'), //ensure the timezone is UTC
-        };
-        this.favoriteMovies = res.FavoriteMovies;
-      });
+    this.fetchApiData.getUser('user').subscribe((res) => {
+      this.userRef = {
+        ...res,
+        Birthday: formatDate(res.Birthday, 'MM-dd-yyyy', 'en-US', '+0000'), //ensure the timezone is UTC
+      };
+      this.favoriteMovies = res.FavoriteMovies;
+    });
   }
 
   addFavorite(movieId: string): void {
