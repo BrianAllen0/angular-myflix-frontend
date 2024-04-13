@@ -128,15 +128,14 @@ export class FetchApiDataService {
 
     const options = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
+        Authorization: `Bearer ${token}`,
       }),
-      body: {
-        movieId: movieId,
-      },
     };
 
+    const body = { movieId: movieId };
+
     return this.http
-      .post<GeneralResponse>(`${apiUrl}movies/favorites/`, options)
+      .post<GeneralResponse>(`${apiUrl}movies/favorites/`, body, options)
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
@@ -164,11 +163,12 @@ export class FetchApiDataService {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
-      body: newData,
     };
 
+    const body = { newData };
+
     return this.http
-      .patch(`${apiUrl}user/update`, newData, options)
+      .patch(`${apiUrl}user`, body, options)
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
