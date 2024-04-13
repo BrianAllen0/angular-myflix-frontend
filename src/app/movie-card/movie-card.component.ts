@@ -50,7 +50,7 @@ export class MovieCardComponent {
   }
 
   getUserMovieFavorites() {
-    this.fetchApiData.getUser('doesntmatter').subscribe((res) => {
+    this.fetchApiData.getUser().subscribe((res) => {
       this.favoriteMovies = res.FavoriteMovies;
     });
   }
