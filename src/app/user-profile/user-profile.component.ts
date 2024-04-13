@@ -35,7 +35,7 @@ export class UserProfileComponent {
   }
 
   getUserData() {
-    this.fetchApiData.getUser('user').subscribe((res) => {
+    this.fetchApiData.getUser().subscribe((res) => {
       this.userRef = {
         ...res,
         Birthday: formatDate(res.Birthday, 'MM-dd-yyyy', 'en-US', '+0000'), //ensure the timezone is UTC
