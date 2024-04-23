@@ -21,6 +21,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserChangeInfoFormComponent } from './user-change-info-form/user-change-info-form.component';
 import { InfoModalComponent } from './info-modal/info-modal.component';
+import { MovieFocusComponent } from './movie-focus/movie-focus.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     UserProfileComponent,
     UserChangeInfoFormComponent,
     InfoModalComponent,
+    MovieFocusComponent,
   ],
   imports: [
     BrowserModule,
