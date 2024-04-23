@@ -165,7 +165,7 @@ export class FetchApiDataService {
       }),
     };
 
-    const body = { newData };
+    const body = newData;
 
     return this.http
       .patch(`${apiUrl}user`, body, options)

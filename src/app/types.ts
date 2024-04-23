@@ -35,6 +35,11 @@ export interface UserLoginRequest {
   Password: string;
 }
 
+export interface UserChangeRequest {
+  Email: string;
+  Password: string;
+}
+
 export interface UserRegRequest extends UserLoginRequest {
   Email: string;
   Birthday: string;
