@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Movie, User } from '../types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-focus',
@@ -11,19 +12,19 @@ import { Movie, User } from '../types';
   styleUrls: ['./movie-focus.component.scss'],
 })
 export class MovieFocusComponent {
-  movies: Movie[] = [];
+  movie!: Movie;
+  paramSub!: Subscription;
+  movieId: string = '';
   favoriteMovies: Movie[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    // const moviesInLocalStorage = localStorage.getItem('movies');
-    // if (moviesInLocalStorage === null || moviesInLocalStorage === '[]') {
-
     const user = localStorage.getItem('userObject');
 
     if (!user) {
@@ -31,21 +32,16 @@ export class MovieFocusComponent {
       return;
     }
 
-    this.getMovies();
-    this.getUserMovieFavorites();
-    //   localStorage.setItem('movies', JSON.stringify(this.movies));
-    // } else {
-    //   this.movies = JSON.parse(localStorage.getItem('movies') || '[]');
-    // }
+    this.movieId = this.route.snapshot.paramMap.getAll('movieId')[0];
 
-    // this.userRef = localStorage.getItem('userObject');
-    // this.userRef = JSON.parse(this.userRef);
-    // this.favoriteMovies = this.userRef.FavoriteMovies;
+    this.getCurrentMovie(this.movieId);
+    this.getUserMovieFavorites();
   }
 
-  getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
+  getCurrentMovie(movieId: string): void {
+    console.log('GETTING MOVIE: ' + movieId);
+    this.fetchApiData.getSpecificMovie(movieId).subscribe((resp: any) => {
+      this.movie = resp;
     });
   }
 
@@ -55,8 +51,8 @@ export class MovieFocusComponent {
     });
   }
 
-  isFavorite(movieID: string): boolean {
-    return !!this.favoriteMovies.find((movie) => movie._id === movieID);
+  isFavorite(movieId: string): boolean {
+    return !!this.favoriteMovies.find((movie) => movie._id === movieId);
   }
 
   addFavorite(movieId: string): void {

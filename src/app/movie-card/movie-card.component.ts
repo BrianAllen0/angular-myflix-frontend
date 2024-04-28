@@ -91,4 +91,8 @@ export class MovieCardComponent {
   goToProfile(): void {
     this.router.navigate(['profile']);
   }
+
+  goToMovieFocus(movieId: string): void {
+    this.router.navigate([`movies/${movieId}`]);
+  }
 }

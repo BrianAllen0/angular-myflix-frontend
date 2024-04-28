@@ -25,11 +25,8 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  {
-    path: 'movies',
-    component: MovieCardComponent,
-    children: [{ path: 'movies/:id', component: MovieFocusComponent }],
-  },
+  { path: 'movies', component: MovieCardComponent },
+  { path: 'movies/:movieId', component: MovieFocusComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];

@@ -63,7 +63,7 @@ export class FetchApiDataService {
     };
 
     return this.http
-      .get<Movie>(`${apiUrl}movie/${movieId}`, options)
+      .get<Movie>(`${apiUrl}movies/${movieId}`, options)
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
