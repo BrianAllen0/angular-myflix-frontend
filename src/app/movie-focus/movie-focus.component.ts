@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { UrlTrackerService } from '../url-tracker.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Movie, User } from '../types';
 import { Subscription } from 'rxjs';
@@ -22,6 +23,7 @@ export class MovieFocusComponent {
     public fetchApiData: FetchApiDataService,
     public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -48,7 +50,9 @@ export class MovieFocusComponent {
     });
   }
 
-  goBack(previousURL: string): void {}
+  goBack(): void {
+    this.router.navigate([this.urlTracker.getLastUrl()]);
+  }
 
   getUserMovieFavorites() {
     this.fetchApiData.getUser().subscribe((res) => {
@@ -64,6 +68,9 @@ export class MovieFocusComponent {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp) => {
       console.log(resp);
       this.getUserMovieFavorites();
+      this.snackBar.open('Added Favorite!', 'OK', {
+        duration: 2000,
+      });
       return resp;
     });
   }
@@ -72,6 +79,9 @@ export class MovieFocusComponent {
     console.log(movieId);
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       this.getUserMovieFavorites();
+      this.snackBar.open('Removed Favorite!', 'OK', {
+        duration: 2000,
+      });
       return resp;
     });
   }
