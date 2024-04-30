@@ -3,7 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { UrlTrackerService } from '../url-tracker.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Movie, User } from '../types';
 
 @Component({

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UrlTrackerService } from '../url-tracker.service';
 import { UserChangeRequest } from '../types';
+import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -21,7 +22,8 @@ export class UserChangeInfoFormComponent {
     public fetchApiData: FetchApiDataService,
     public urlTracker: UrlTrackerService,
     public dialogRef: MatDialogRef<UserChangeInfoFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   invalidInfoWarn(info: string): void {
