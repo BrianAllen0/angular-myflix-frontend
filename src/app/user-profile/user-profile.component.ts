@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { UrlTrackerService } from '../url-tracker.service';
@@ -18,7 +18,8 @@ export class UserProfileComponent {
     public fetchApiData: FetchApiDataService,
     public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {}
 
   public userBirthday: string = '';

@@ -4,7 +4,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { UrlTrackerService } from '../url-tracker.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserRegRequest } from '../types';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 
 @Component({
@@ -26,6 +26,7 @@ export class UserRegistrationFormComponent implements OnInit {
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar,
     public router: Router,
+    private route: ActivatedRoute,
     public dialog: MatDialog
   ) {}
 

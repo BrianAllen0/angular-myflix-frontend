@@ -19,7 +19,8 @@ export class MovieCardComponent {
     public fetchApiData: FetchApiDataService,
     public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
