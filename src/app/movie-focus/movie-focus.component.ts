@@ -27,6 +27,7 @@ export class MovieFocusComponent {
   ) {}
 
   ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
     const user = localStorage.getItem('userObject');
 
     if (!user) {

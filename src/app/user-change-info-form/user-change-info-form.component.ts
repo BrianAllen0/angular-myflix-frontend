@@ -26,6 +26,10 @@ export class UserChangeInfoFormComponent {
     private route: ActivatedRoute
   ) {}
 
+  ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
+  }
+
   invalidInfoWarn(info: string): void {
     if (info === 'email') {
     } else {

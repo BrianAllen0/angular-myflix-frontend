@@ -22,7 +22,9 @@ export class UserLoginFormComponent {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
+  }
 
   loginUser(): void {
     this.fetchApiData.login(this.userData).subscribe(

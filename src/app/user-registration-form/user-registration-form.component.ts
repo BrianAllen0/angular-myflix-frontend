@@ -30,7 +30,9 @@ export class UserRegistrationFormComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
+  }
 
   registerUser(): void {
     const userDataUpdate = {

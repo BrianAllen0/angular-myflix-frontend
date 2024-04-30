@@ -17,8 +17,9 @@ export class WelcomePageComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.urlTracker.setLastURL(this.urlTracker.getCurrentURL());
+    this.urlTracker.updateUrl(this.route.snapshot.url);
   }
+
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px',

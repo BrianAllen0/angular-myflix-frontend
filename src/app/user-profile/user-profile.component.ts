@@ -35,6 +35,7 @@ export class UserProfileComponent {
 
   ngOnInit(): void {
     this.getUserData();
+    this.urlTracker.updateUrl(this.route.snapshot.url);
   }
 
   getUserData() {

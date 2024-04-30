@@ -24,6 +24,7 @@ export class MovieCardComponent {
   ) {}
 
   ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
     // const moviesInLocalStorage = localStorage.getItem('movies');
     // if (moviesInLocalStorage === null || moviesInLocalStorage === '[]') {
 
