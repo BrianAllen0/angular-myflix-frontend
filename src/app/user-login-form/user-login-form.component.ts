@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UrlTrackerService } from '../url-tracker.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -14,6 +15,7 @@ export class UserLoginFormComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router

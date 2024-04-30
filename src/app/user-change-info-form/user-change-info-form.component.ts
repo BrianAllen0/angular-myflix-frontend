@@ -2,6 +2,7 @@ import { Component, Inject, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UrlTrackerService } from '../url-tracker.service';
 import { UserChangeRequest } from '../types';
 import { formatDate } from '@angular/common';
 
@@ -18,6 +19,7 @@ export class UserChangeInfoFormComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialogRef: MatDialogRef<UserChangeInfoFormComponent>,
     public snackBar: MatSnackBar
   ) {}

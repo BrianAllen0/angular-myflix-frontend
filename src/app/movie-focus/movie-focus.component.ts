@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UrlTrackerService } from '../url-tracker.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -19,6 +20,7 @@ export class MovieFocusComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
