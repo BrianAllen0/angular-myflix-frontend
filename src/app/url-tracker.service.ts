@@ -21,9 +21,9 @@ export class UrlTrackerService {
   public updateUrl(urlArray: UrlSegment[]): void {
     // we're about to update - the current is assigned to the last and the argument is assigned to the current
     this.lastUrl = this.currentUrl;
-    let newUrlString!: string;
+    let newUrlString: string = '';
     urlArray.forEach((element) => {
-      newUrlString += element + '/';
+      newUrlString += element.path + '/';
     });
     this.currentUrl = newUrlString;
   }
