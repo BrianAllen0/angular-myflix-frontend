@@ -12,13 +12,53 @@
   width: 100%;
 }
 
-.movie-card-container {
-  display: flex;
-  width: 50%;
+.movie-content-container {
+  width: 100%;
   padding-top: 4rem;
+  display: flex;
+  flex-direction: row;
   border: red solid 1px;
+}
+
+.movie-display-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: red solid 1px;
+}
+
+.movie-title {
+  text-align: center;
+}
+
+.movie-poster-container {
+  display: flex;
   justify-content: center;
-  align-items: center;
+  border: red solid 1px;
+  padding: 2rem;
+  padding-top: 0.5rem;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+
+.back-button {
+  margin-right: 1rem;
+}
+
+.action-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.movie-info-container {
+  width: 50%;
+  display: flex;
+  padding: 2rem;
+  flex-direction: column;
+  border: red solid 1px;
 }
 
 .movie-card-title {

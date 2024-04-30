@@ -20,42 +20,57 @@
   </div>
   <div *ngIf="movie" class="movie-content-container">
     <!-- TODO: build paper mockup structure -->
-    <div class="movie-focus-container">
+    <div class="movie-display-container">
+      <h1 class="movie-title">{{ movie.Title }}</h1>
       <div class="movie-poster-container">
-        <h1 class="movie-title">{{ movie.Title }}</h1>
         <img
-          class="movie-img"
+          class="movie-poster"
           src="{{ movie.ImagePath }}"
           alt="{{ movie.Title }}"
         />
       </div>
-      <div class="movie-info-container">
-        <div class="action-section">
-          <button
-            class="back-button"
-            mat-raised-button
-            color="primary"
-            (click)="logout()"
-          >
-            Back
-          </button>
-          <button
-            class="favorite-button"
-            mat-raised-button
-            color="primary"
-            (click)="logout()"
-          >
-            <p *ngIf="isFavorite(movie._id)">Add Favorite</p>
-            <p *ngIf="!isFavorite(movie._id)">Remove Favorite</p>
-          </button>
-        </div>
-        <div class="info-section">
-          <p>Directed by: {{ movie.Director.Name }}</p>
-          <p>Genre: {{ movie.Genre.Name }}</p>
-          <div class="synposis-section">
-            <h2>Synopsis</h2>
-            <p>{{ movie.Genre.Description }}</p>
+    </div>
+    <div class="movie-info-container">
+      <div class="action-section">
+        <button
+          class="back-button"
+          mat-raised-button
+          color="primary"
+          (click)="goBack(movie.Title)"
+        >
+          Back
+        </button>
+        <div class="favorite-button-section">
+          <div *ngIf="!isFavorite(movie._id)">
+            <button
+              class="favorite-button"
+              mat-raised-button
+              color="primary"
+              (click)="addFavorite(movie._id)"
+            >
+              Add Favorite
+            </button>
           </div>
+          <div *ngIf="isFavorite(movie._id)">
+            <button
+              class="favorite-button"
+              mat-raised-button
+              color="primary"
+              (click)="removeFavorite(movie._id)"
+            >
+              Remove Favorite
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="info-section">
+        <h3 class="font-weight-normal">
+          Directed by: {{ movie.Director.Name }}
+        </h3>
+        <h3 class="font-weight-normal">Genre: {{ movie.Genre.Name }}</h3>
+        <div class="synposis-section">
+          <h2>Synopsis</h2>
+          <p>{{ movie.Description }}</p>
         </div>
       </div>
     </div>

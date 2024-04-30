@@ -45,6 +45,8 @@ export class MovieFocusComponent {
     });
   }
 
+  goBack(previousURL: string): void {}
+
   getUserMovieFavorites() {
     this.fetchApiData.getUser().subscribe((res) => {
       this.favoriteMovies = res.FavoriteMovies;
