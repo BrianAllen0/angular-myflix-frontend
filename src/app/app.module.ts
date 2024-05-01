@@ -23,6 +23,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserChangeInfoFormComponent } from './user-change-info-form/user-change-info-form.component';
 import { InfoModalComponent } from './info-modal/info-modal.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     InfoModalComponent,
     MovieFocusComponent,
     DirectorViewComponent,
+    GenreViewComponent,
   ],
   imports: [
     BrowserModule,
