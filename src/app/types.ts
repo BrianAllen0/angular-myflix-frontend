@@ -17,6 +17,13 @@ export interface Movie {
   Title: string;
 }
 
+export interface Director {
+  Name: string;
+  Bio: string;
+  Birthyear: number;
+  Deathyear: number;
+}
+
 export interface User {
   _id: string;
   Username: string;

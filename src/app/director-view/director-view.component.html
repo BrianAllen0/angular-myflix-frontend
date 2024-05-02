@@ -1,1 +1,38 @@
-<p>director-view works!</p>
+<div class="director-view-container">
+  <div class="banner">
+    <h1 class="header">MyFlix</h1>
+    <button
+      class="profile-button"
+      mat-raised-button
+      color="primary"
+      (click)="goToProfile()"
+    >
+      My Profile
+    </button>
+    <button
+      class="logout-button"
+      mat-raised-button
+      color="primary"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+  <div class="director-view-content-container">
+    <div class="director-info-container">
+      <h1>{{ director.Birthyear }}</h1>
+      <h3>Born: {{ director.Birthyear }}</h3>
+      <h3>Born: {{ director.Deathyear }}</h3>
+    </div>
+    <div class="action-button-container">
+      <button
+        class="back-button"
+        mat-raised-button
+        color="primary"
+        (click)="goBack()"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+</div>
