@@ -53,6 +53,20 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  public getAllDirectors(): Observable<Movie[]> {
+    const token = localStorage.getItem('token');
+
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http
+      .get<Movie[]>(`${apiUrl}directors`, options)
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
   public getSpecificMovie(movieId: string): Observable<Movie> {
     const token = localStorage.getItem('token');
 
