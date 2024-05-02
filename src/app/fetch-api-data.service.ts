@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import {
   GeneralResponse,
   Movie,
+  Director,
   User,
   UserLoginRequest,
   UserLoginResponse,
@@ -53,7 +54,7 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  public getAllDirectors(): Observable<Movie[]> {
+  public getAllDirectors(): Observable<Director[]> {
     const token = localStorage.getItem('token');
 
     const options = {
@@ -63,7 +64,7 @@ export class FetchApiDataService {
     };
 
     return this.http
-      .get<Movie[]>(`${apiUrl}directors`, options)
+      .get<Director[]>(`${apiUrl}directors`, options)
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
