@@ -4,7 +4,6 @@
   height: auto;
   background-color: #236598;
   color: white;
-  //   border: red solid 1px;
 }
 
 .movie-cards-container {
@@ -17,14 +16,12 @@
   padding-top: 4rem;
   display: flex;
   flex-direction: row;
-  border: red solid 1px;
 }
 
 .movie-display-container {
   width: 50%;
   display: flex;
   flex-direction: column;
-  border: red solid 1px;
 }
 
 .movie-title {
@@ -34,13 +31,19 @@
 .movie-poster-container {
   display: flex;
   justify-content: center;
-  border: red solid 1px;
   padding: 2rem;
   padding-top: 0.5rem;
 }
 
 .font-weight-normal {
   font-weight: normal;
+}
+
+.button-font {
+  font-weight: normal;
+  font-size: large;
+  margin: 0;
+  padding: 0;
 }
 
 .back-button {
@@ -56,6 +59,15 @@
 .director-link-section {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.director-button {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  height: fit-content;
 }
 
 .movie-info-container {
@@ -63,7 +75,6 @@
   display: flex;
   padding: 2rem;
   flex-direction: column;
-  border: red solid 1px;
 }
 
 .movie-card-title {
