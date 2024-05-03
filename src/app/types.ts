@@ -17,6 +17,12 @@ export interface Movie {
   Title: string;
 }
 
+export interface Genre {
+  _id: string;
+  Name: string;
+  Description: string;
+}
+
 export interface Director {
   _id: string;
   Name: string;

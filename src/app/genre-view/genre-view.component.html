@@ -1,1 +1,38 @@
-<p>genre-view works!</p>
+<div class="genre-view-container">
+  <div class="banner">
+    <h1 class="header">MyFlix</h1>
+    <button
+      class="profile-button"
+      mat-raised-button
+      color="primary"
+      (click)="goToProfile()"
+    >
+      My Profile
+    </button>
+    <button
+      class="logout-button"
+      mat-raised-button
+      color="primary"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+  <div *ngIf="genre" class="genre-view-content">
+    <div class="genre-info-container">
+      <h1>{{ genre.Name }}</h1>
+      <h4>{{ genre.Description }}</h4>
+    </div>
+    <div class="action-button-container">
+      <button
+        class="back-button"
+        mat-raised-button
+        color="primary"
+        (click)="goBack()"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+</div>
+>

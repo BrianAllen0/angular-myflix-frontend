@@ -11,6 +11,7 @@ import {
   GeneralResponse,
   Movie,
   Director,
+  Genre,
   User,
   UserLoginRequest,
   UserLoginResponse,
@@ -65,6 +66,20 @@ export class FetchApiDataService {
 
     return this.http
       .get<Director[]>(`${apiUrl}directors`, options)
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  public getAllGenres(): Observable<Genre[]> {
+    const token = localStorage.getItem('token');
+
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http
+      .get<Genre[]>(`${apiUrl}genres`, options)
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 

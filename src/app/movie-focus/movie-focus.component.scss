@@ -62,7 +62,13 @@
   align-items: center;
 }
 
-.director-button {
+.genre-link-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.link-button {
   background: transparent;
   border: none;
   text-decoration: underline;

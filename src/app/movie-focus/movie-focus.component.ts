@@ -5,7 +5,7 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Movie, User, Director } from '../types';
+import { Movie, User, Director, Genre } from '../types';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -50,6 +50,19 @@ export class MovieFocusComponent {
     });
   }
 
+  getGenreIdByName(name: string): string {
+    let genreId: string = '';
+    let genreArray: Genre[] = JSON.parse(
+      localStorage.getItem('genres') || '[]'
+    );
+    genreArray.forEach((genre: Genre) => {
+      if (genre.Name === name) {
+        genreId = genre._id;
+      }
+    });
+    return genreId;
+  }
+
   getDirectorIdByName(name: string): string {
     let directorId: string = '';
     let directorArray: Director[] = JSON.parse(
@@ -66,6 +79,12 @@ export class MovieFocusComponent {
   goToDirector(name: string): void {
     let directorId: string = this.getDirectorIdByName(name);
     this.router.navigate([`directors/${directorId}`]);
+  }
+
+  goToGenre(name: string): void {
+    let genreId: string = this.getGenreIdByName(name);
+    console.log('name', `genres/${genreId}`);
+    this.router.navigate([`genres/${genreId}`]);
   }
 
   goBack(): void {

@@ -20,12 +20,16 @@ export class WelcomePageComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.urlTracker.updateUrl(this.route.snapshot.url);
-    this.getDirectors();
+    this.storeLocalData();
   }
 
-  getDirectors(): void {
+  storeLocalData(): void {
     this.fetchApiData.getAllDirectors().subscribe((resp: any) => {
       localStorage.setItem('directors', JSON.stringify(resp));
+    });
+    this.fetchApiData.getAllGenres().subscribe((resp: any) => {
+      localStorage.setItem('genres', JSON.stringify(resp));
+      console.log('resp', resp);
     });
   }
 
