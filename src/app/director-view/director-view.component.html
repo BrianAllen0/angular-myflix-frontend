@@ -18,11 +18,13 @@
       Logout
     </button>
   </div>
-  <div class="director-view-content-container">
+  <div *ngIf="director" class="director-view-content-container">
+    <div *ngIf="director ? formatDates() : false"></div>
     <div class="director-info-container">
-      <h1>{{ director.Birthyear }}</h1>
-      <h3>Born: {{ director.Birthyear }}</h3>
-      <h3>Born: {{ director.Deathyear }}</h3>
+      <h1>{{ director.Name }}</h1>
+      <h3>Born: {{ birthdateString }}</h3>
+      <h3 *ngIf="deathdateString != ''">Died: {{ deathdateString }}</h3>
+      <p>{{ director.Bio }}</p>
     </div>
     <div class="action-button-container">
       <button

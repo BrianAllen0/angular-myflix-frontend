@@ -19,7 +19,6 @@
     </button>
   </div>
   <div *ngIf="movie" class="movie-content-container">
-    <!-- TODO: build paper mockup structure -->
     <div class="movie-display-container">
       <h1 class="movie-title">{{ movie.Title }}</h1>
       <div class="movie-poster-container">
@@ -64,9 +63,18 @@
         </div>
       </div>
       <div class="info-section">
-        <h3 class="font-weight-normal">
-          Directed by: {{ movie.Director.Name }}
-        </h3>
+        <div class="director-link-section">
+          <h3 class="font-weight-normal">Directed by:</h3>
+          <button
+            class="director-button"
+            (click)="goToDirector(movie.Director.Name)"
+          >
+            <h3 class="font-weight-normal">
+              {{ movie.Director.Name }}
+            </h3>
+          </button>
+        </div>
+
         <h3 class="font-weight-normal">Genre: {{ movie.Genre.Name }}</h3>
         <div class="synposis-section">
           <h2>Synopsis</h2>

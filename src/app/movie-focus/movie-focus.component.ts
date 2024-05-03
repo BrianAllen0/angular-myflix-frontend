@@ -5,7 +5,7 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Movie, User } from '../types';
+import { Movie, User, Director } from '../types';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -48,6 +48,24 @@ export class MovieFocusComponent {
     this.fetchApiData.getSpecificMovie(movieId).subscribe((resp: any) => {
       this.movie = resp;
     });
+  }
+
+  getDirectorIdByName(name: string): string {
+    let directorId: string = '';
+    let directorArray: Director[] = JSON.parse(
+      localStorage.getItem('directors') || '[]'
+    );
+    directorArray.forEach((director: Director) => {
+      if (director.Name === name) {
+        directorId = director._id;
+      }
+    });
+    return directorId;
+  }
+
+  goToDirector(name: string): void {
+    let directorId: string = this.getDirectorIdByName(name);
+    this.router.navigate([`directors/${directorId}`]);
   }
 
   goBack(): void {

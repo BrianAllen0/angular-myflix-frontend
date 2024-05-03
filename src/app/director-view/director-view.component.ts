@@ -12,6 +12,8 @@ import { Director } from '../types';
 export class DirectorViewComponent {
   director!: Director;
   directorId: string = '';
+  birthdateString: string = '';
+  deathdateString: string = '';
 
   constructor(
     private router: Router,
@@ -24,10 +26,26 @@ export class DirectorViewComponent {
     this.urlTracker.updateUrl(this.route.snapshot.url);
 
     this.directorId = this.route.snapshot.paramMap.getAll('directorId')[0];
+    this.getDirector(this.directorId);
   }
 
   goBack(): void {
     this.router.navigate([this.urlTracker.getLastUrl()]);
+  }
+
+  formatDates(): void {
+    let birthDate: Date = new Date(this.director.Birth);
+    let deathDate: Date = new Date(this.director.Death);
+    this.birthdateString = birthDate.toLocaleDateString(undefined, {
+      timeZone: 'UTC',
+    });
+    if (deathDate.valueOf() !== 0) {
+      // if date is 1/1/1970, don't assign string, ngif ensures deathdate isn't rendered
+      // no one ever died on the unix epoch
+      this.deathdateString = deathDate.toLocaleDateString(undefined, {
+        timeZone: 'UTC',
+      });
+    }
   }
 
   getDirector(directorId: string): void {
