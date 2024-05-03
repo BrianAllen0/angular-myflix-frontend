@@ -28,7 +28,10 @@
           >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
         >
       </mat-card-header>
-      <button (click)="goToMovieFocus(movie._id)">
+      <button
+        class="movie-poster-clickable"
+        (click)="goToMovieFocus(movie._id)"
+      >
         <img
           class="movie-card-img"
           src="{{ movie.ImagePath }}"
