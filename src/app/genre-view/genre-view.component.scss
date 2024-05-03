@@ -1,0 +1,44 @@
+.genre-view-container {
+  background-color: rgb(211, 211, 218);
+  width: 100%;
+}
+
+.banner {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  width: inherit;
+  min-width: 375px;
+  height: 3.5rem;
+  align-items: center;
+  flex-direction: row;
+  background-color: #114e7e;
+}
+
+.header {
+  margin-left: 1rem;
+  color: white;
+  user-select: none;
+}
+
+.logout-button {
+  margin-right: 1rem;
+  margin-left: 0.25rem;
+}
+
+.profile-button {
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.genre-info-container {
+  width: 75%;
+}
+
+.genre-view-content {
+  padding: 2rem;
+  padding-top: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
