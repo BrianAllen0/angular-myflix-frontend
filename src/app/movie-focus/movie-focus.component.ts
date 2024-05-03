@@ -70,6 +70,7 @@ export class MovieFocusComponent {
 
   goBack(): void {
     this.router.navigate([this.urlTracker.getLastUrl()]);
+    this.urlTracker.wentBack();
   }
 
   getUserMovieFavorites() {

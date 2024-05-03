@@ -15,16 +15,11 @@ export class UserLoginFormComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
-    public urlTracker: UrlTrackerService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-
-  ngOnInit(): void {
-    this.urlTracker.updateUrl(this.route.snapshot.url);
-  }
 
   loginUser(): void {
     this.fetchApiData.login(this.userData).subscribe(

@@ -31,6 +31,7 @@ export class DirectorViewComponent {
 
   goBack(): void {
     this.router.navigate([this.urlTracker.getLastUrl()]);
+    this.urlTracker.wentBack();
   }
 
   formatDates(): void {

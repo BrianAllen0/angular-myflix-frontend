@@ -7,6 +7,7 @@ import { UrlSegment } from '@angular/router';
 export class UrlTrackerService {
   private lastUrl: string = '';
   private currentUrl: string = '';
+  private urlList: string[] = [];
 
   constructor() {}
 
@@ -18,13 +19,19 @@ export class UrlTrackerService {
     return this.currentUrl;
   }
 
+  public wentBack(): void {
+    this.urlList.pop();
+    this.currentUrl = this.urlList[this.urlList.length - 1];
+    this.lastUrl = this.urlList[this.urlList.length - 2];
+  }
+
   public updateUrl(urlArray: UrlSegment[]): void {
-    // we're about to update - the current is assigned to the last and the argument is assigned to the current
-    this.lastUrl = this.currentUrl;
     let newUrlString: string = '';
     urlArray.forEach((element) => {
       newUrlString += element.path + '/';
     });
-    this.currentUrl = newUrlString;
+    this.urlList.push(newUrlString); // keep list of visited pages in order
+    this.currentUrl = this.urlList[this.urlList.length - 1];
+    this.lastUrl = this.urlList[this.urlList.length - 2];
   }
 }
