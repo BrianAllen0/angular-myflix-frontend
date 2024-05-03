@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UrlSegment } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class UrlTrackerService {
   private currentUrl: string = '';
   private urlList: string[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   public getLastUrl(): string {
     return this.lastUrl;
@@ -20,6 +21,10 @@ export class UrlTrackerService {
   }
 
   public wentBack(): void {
+    if (this.urlList.length === 0) {
+      // fallback in case we have no state
+      this.router.navigate(['welcome']);
+    }
     this.urlList.pop();
     this.currentUrl = this.urlList[this.urlList.length - 1];
     this.lastUrl = this.urlList[this.urlList.length - 2];
