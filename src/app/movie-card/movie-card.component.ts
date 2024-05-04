@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UrlTrackerService } from '../url-tracker.service';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Movie, User } from '../types';
 
 @Component({
@@ -16,11 +17,14 @@ export class MovieCardComponent {
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.urlTracker.updateUrl(this.route.snapshot.url);
     // const moviesInLocalStorage = localStorage.getItem('movies');
     // if (moviesInLocalStorage === null || moviesInLocalStorage === '[]') {
 
@@ -90,5 +94,9 @@ export class MovieCardComponent {
 
   goToProfile(): void {
     this.router.navigate(['profile']);
+  }
+
+  goToMovieFocus(movieId: string): void {
+    this.router.navigate([`movies/${movieId}`]);
   }
 }

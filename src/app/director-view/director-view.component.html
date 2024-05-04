@@ -1,0 +1,40 @@
+<div class="director-view-container">
+  <div class="banner">
+    <h1 class="header">MyFlix</h1>
+    <button
+      class="profile-button"
+      mat-raised-button
+      color="primary"
+      (click)="goToProfile()"
+    >
+      My Profile
+    </button>
+    <button
+      class="logout-button"
+      mat-raised-button
+      color="primary"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+  <div *ngIf="director" class="director-view-content-container">
+    <div *ngIf="director ? formatDates() : false"></div>
+    <div class="director-info-container">
+      <h1>{{ director.Name }}</h1>
+      <h3>Born: {{ birthdateString }}</h3>
+      <h3 *ngIf="deathdateString != ''">Died: {{ deathdateString }}</h3>
+      <p>{{ director.Bio }}</p>
+    </div>
+    <div class="action-button-container">
+      <button
+        class="back-button"
+        mat-raised-button
+        color="primary"
+        (click)="goBack()"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+</div>

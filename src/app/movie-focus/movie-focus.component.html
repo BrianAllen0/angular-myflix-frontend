@@ -1,0 +1,92 @@
+<div class="movie-cards-container">
+  <div class="banner">
+    <h1 class="header">MyFlix</h1>
+    <button
+      class="profile-button"
+      mat-raised-button
+      color="primary"
+      (click)="goToProfile()"
+    >
+      My Profile
+    </button>
+    <button
+      class="logout-button"
+      mat-raised-button
+      color="primary"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+  <div *ngIf="movie" class="movie-content-container">
+    <div class="movie-display-container">
+      <h1 class="movie-title">{{ movie.Title }}</h1>
+      <div class="movie-poster-container">
+        <img
+          class="movie-poster"
+          src="{{ movie.ImagePath }}"
+          alt="{{ movie.Title }}"
+        />
+      </div>
+    </div>
+    <div class="movie-info-container">
+      <div class="action-section">
+        <button
+          class="back-button"
+          mat-raised-button
+          color="primary"
+          (click)="goBack()"
+        >
+          Back
+        </button>
+        <div class="favorite-button-section">
+          <div *ngIf="!isFavorite(movie._id)">
+            <button
+              class="favorite-button"
+              mat-raised-button
+              color="primary"
+              (click)="addFavorite(movie._id)"
+            >
+              Add Favorite
+            </button>
+          </div>
+          <div *ngIf="isFavorite(movie._id)">
+            <button
+              class="favorite-button"
+              mat-raised-button
+              color="primary"
+              (click)="removeFavorite(movie._id)"
+            >
+              Remove Favorite
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="info-section">
+        <div class="director-link-section">
+          <h3 class="font-weight-normal">Directed by:</h3>
+          <button
+            class="link-button"
+            (click)="goToDirector(movie.Director.Name)"
+          >
+            <h3 class="button-font">
+              {{ movie.Director.Name }}
+            </h3>
+          </button>
+        </div>
+        <div class="genre-link-section">
+          <h3 class="font-weight-normal">Genre:</h3>
+          <button class="link-button" (click)="goToGenre(movie.Genre.Name)">
+            <h3 class="button-font">
+              {{ movie.Genre.Name }}
+            </h3>
+          </button>
+        </div>
+        <div class="synposis-section">
+          <h2>Synopsis</h2>
+          <p>{{ movie.Description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

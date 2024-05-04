@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UrlTrackerService } from '../url-tracker.service';
 import { UserChangeInfoFormComponent } from '../user-change-info-form/user-change-info-form.component';
 import { Movie, User } from '../types';
 import { formatDate } from '@angular/common';
@@ -15,8 +16,10 @@ import { formatDate } from '@angular/common';
 export class UserProfileComponent {
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {}
 
   public userBirthday: string = '';
@@ -32,6 +35,7 @@ export class UserProfileComponent {
 
   ngOnInit(): void {
     this.getUserData();
+    this.urlTracker.updateUrl(this.route.snapshot.url);
   }
 
   getUserData() {

@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 import {
   GeneralResponse,
   Movie,
+  Director,
+  Genre,
   User,
   UserLoginRequest,
   UserLoginResponse,
@@ -53,6 +55,34 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
+  public getAllDirectors(): Observable<Director[]> {
+    const token = localStorage.getItem('token');
+
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http
+      .get<Director[]>(`${apiUrl}directors`, options)
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  public getAllGenres(): Observable<Genre[]> {
+    const token = localStorage.getItem('token');
+
+    const options = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http
+      .get<Genre[]>(`${apiUrl}genres`, options)
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
   public getSpecificMovie(movieId: string): Observable<Movie> {
     const token = localStorage.getItem('token');
 
@@ -63,7 +93,7 @@ export class FetchApiDataService {
     };
 
     return this.http
-      .get<Movie>(`${apiUrl}movie/${movieId}`, options)
+      .get<Movie>(`${apiUrl}movies/${movieId}`, options)
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
@@ -165,7 +195,7 @@ export class FetchApiDataService {
       }),
     };
 
-    const body = { newData };
+    const body = newData;
 
     return this.http
       .patch(`${apiUrl}user`, body, options)

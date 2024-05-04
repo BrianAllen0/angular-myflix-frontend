@@ -1,8 +1,10 @@
 import { Component, Inject, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { UserRegRequest } from '../types';
+import { UrlTrackerService } from '../url-tracker.service';
+import { UserChangeRequest } from '../types';
+import { ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 @Component({
@@ -11,36 +13,33 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./user-change-info-form.component.scss'],
 })
 export class UserChangeInfoFormComponent {
-  @Input() updatedInfo: UserRegRequest = {
+  @Input() updatedInfo: UserChangeRequest = {
     Password: '',
     Email: '',
-    Username: '',
-    Birthday: '',
   };
 
   constructor(
     public fetchApiData: FetchApiDataService,
+    public urlTracker: UrlTrackerService,
     public dialogRef: MatDialogRef<UserChangeInfoFormComponent>,
     public snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: UserRegRequest //Needed to receive data from line 87 in UserProfileComponent
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.updatedInfo = {
-      ...this.updatedInfo,
-      Username: this.data.Username,
-      Email: this.data.Email,
-      //'yyyy-MM-dd' must be in this format to pre-fill input field
-      Birthday: formatDate(this.data.Birthday, 'yyyy-MM-dd', 'en-US', '+0000'),
-    };
+    this.urlTracker.updateUrl(this.route.snapshot.url);
   }
+
+  invalidInfoWarn(info: string): void {
+    if (info === 'email') {
+    } else {
+    }
+  }
+
   changeInfo(): void {
     const userUpdateInfo = {
-      Username: this.updatedInfo.Username || this.data.Username,
-      Password: this.updatedInfo.Password || '', // We are setting this to an empty string because the backend will only change password if its length is greater than 1
-      Birthday:
-        Date.parse(this.updatedInfo.Birthday) || Date.parse(this.data.Birthday),
-      Email: this.updatedInfo.Email || this.data.Email,
+      Password: this.updatedInfo.Password || '',
+      Email: this.updatedInfo.Email || '',
     };
 
     this.fetchApiData.updateUser(userUpdateInfo).subscribe({

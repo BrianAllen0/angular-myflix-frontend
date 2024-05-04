@@ -4,8 +4,8 @@ export interface Movie {
   Director: {
     Name: string;
     Bio: string;
-    Birthyear: number;
-    Deathyear: number;
+    Birth: Date;
+    Death: Date;
   };
   Featured: boolean;
   Genre: {
@@ -15,6 +15,20 @@ export interface Movie {
   ImagePath: string;
   Released: string;
   Title: string;
+}
+
+export interface Genre {
+  _id: string;
+  Name: string;
+  Description: string;
+}
+
+export interface Director {
+  _id: string;
+  Name: string;
+  Bio: string;
+  Birth: Date;
+  Death: Date;
 }
 
 export interface User {
@@ -32,6 +46,11 @@ export interface GeneralResponse {
 
 export interface UserLoginRequest {
   Username: string;
+  Password: string;
+}
+
+export interface UserChangeRequest {
+  Email: string;
   Password: string;
 }
 

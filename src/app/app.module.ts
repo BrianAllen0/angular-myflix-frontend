@@ -17,14 +17,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MovieFocusComponent } from './movie-focus/movie-focus.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserChangeInfoFormComponent } from './user-change-info-form/user-change-info-form.component';
 import { InfoModalComponent } from './info-modal/info-modal.component';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'movies/:movieId', component: MovieFocusComponent },
+  { path: 'directors/:directorId', component: DirectorViewComponent },
+  { path: 'genres/:genreId', component: GenreViewComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
@@ -39,6 +45,9 @@ const appRoutes: Routes = [
     UserProfileComponent,
     UserChangeInfoFormComponent,
     InfoModalComponent,
+    MovieFocusComponent,
+    DirectorViewComponent,
+    GenreViewComponent,
   ],
   imports: [
     BrowserModule,
