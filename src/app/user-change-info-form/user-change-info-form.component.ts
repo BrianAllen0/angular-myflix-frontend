@@ -44,7 +44,6 @@ export class UserChangeInfoFormComponent {
 
     this.fetchApiData.updateUser(userUpdateInfo).subscribe({
       next: (result) => {
-        console.log(result);
         this.snackBar.open('Updated info successfully!', 'OK', {
           duration: 2000,
         });

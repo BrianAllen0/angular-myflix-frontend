@@ -44,7 +44,6 @@ export class MovieFocusComponent {
   }
 
   getCurrentMovie(movieId: string): void {
-    console.log('GETTING MOVIE: ' + movieId);
     this.fetchApiData.getSpecificMovie(movieId).subscribe((resp: any) => {
       this.movie = resp;
     });
@@ -83,7 +82,6 @@ export class MovieFocusComponent {
 
   goToGenre(name: string): void {
     let genreId: string = this.getGenreIdByName(name);
-    console.log('name', `genres/${genreId}`);
     this.router.navigate([`genres/${genreId}`]);
   }
 
@@ -104,7 +102,6 @@ export class MovieFocusComponent {
 
   addFavorite(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp) => {
-      console.log(resp);
       this.getUserMovieFavorites();
       this.snackBar.open('Added Favorite!', 'OK', {
         duration: 2000,
@@ -114,7 +111,6 @@ export class MovieFocusComponent {
   }
 
   removeFavorite(movieId: string): void {
-    console.log(movieId);
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       this.getUserMovieFavorites();
       this.snackBar.open('Removed Favorite!', 'OK', {

@@ -29,7 +29,6 @@ export class WelcomePageComponent implements OnInit {
     });
     this.fetchApiData.getAllGenres().subscribe((resp: any) => {
       localStorage.setItem('genres', JSON.stringify(resp));
-      console.log('resp', resp);
     });
   }
 

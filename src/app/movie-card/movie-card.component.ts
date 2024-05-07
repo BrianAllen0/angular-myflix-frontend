@@ -65,14 +65,12 @@ export class MovieCardComponent {
 
   addFavorite(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp) => {
-      console.log(resp);
       this.getUserMovieFavorites();
       return resp;
     });
   }
 
   removeFavorite(movieId: string): void {
-    console.log(movieId);
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       this.getUserMovieFavorites();
       return resp;
